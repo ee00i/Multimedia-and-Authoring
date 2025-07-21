@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotoscope Multimedia & Authoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1a0033 0%, #000000 50%, #2d1b3d 100%);
+            color: #e0d4f7;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(156, 39, 176, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
+        }
+
+        .back-btn {
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
+        }
+
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: starMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes starMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #9c27b0, #e1bee7, #6a1b9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(156, 39, 176, 0.8); }
+            100% { text-shadow: 0 0 50px rgba(156, 39, 176, 1); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #d1c4e9;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e1bee7;
+            text-shadow: 0 0 20px rgba(156, 39, 176, 0.6);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #b39ddb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        /* Featured Video Section */
+        .featured-section {
+            margin-bottom: 120px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #e1bee7;
+            text-shadow: 0 0 20px rgba(156, 39, 176, 0.6);
+        }
+
+        .featured-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .video-section {
+            position: relative;
+        }
+
+        .main-video-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.3);
+        }
+
+        .main-video-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(156, 39, 176, 0.5);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+        }
+
+        .play-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .video-placeholder:hover .play-icon {
+            transform: scale(1.2);
+        }
+
+        .video-placeholder h3 {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        #mainVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .info-panel {
+            background: rgba(30, 0, 60, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .info-panel h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+        }
+
+        .info-panel p {
+            color: #d1c4e9;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #b39ddb;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #e1bee7;
+            font-weight: bold;
+        }
+
+        .credits {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+
+        .credits h4 {
+            color: #e1bee7;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .credits p {
+            color: #b39ddb;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .youtube-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Week Cards Grid */
+        .weeks-section {
+            margin-bottom: 100px;
+        }
+
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .week-card {
+            background: rgba(30, 0, 60, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #9c27b0, #e1bee7, #6a1b9a);
+            background-size: 300% 100%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .week-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 0, 60, 0.8);
+            border-color: rgba(156, 39, 176, 0.8);
+            box-shadow: 0 20px 60px rgba(156, 39, 176, 0.4);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .week-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+        }
+
+        .progress-indicator {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #e1bee7 0deg, #e1bee7 calc(var(--progress) * 3.6deg), rgba(156, 39, 176, 0.2) calc(var(--progress) * 3.6deg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .progress-indicator::before {
+            content: '';
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            position: absolute;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #e1bee7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .week-video {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.3);
+        }
+
+        .week-video:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 35px rgba(156, 39, 176, 0.5);
+        }
+
+        .week-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .week-video .play-icon {
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .week-video.playing .play-icon {
+            display: none;
+        }
+
+        .week-video.playing video {
+            display: block;
+        }
+
+        .week-description {
+            color: #d1c4e9;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: scale(0.8);
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .fab.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(156, 39, 176, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-bar { 
+                padding: 15px 20px; 
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .featured-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .weeks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 60px 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a0033;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #9c27b0, #e1bee7);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #e1bee7, #9c27b0);
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="logo">Rotoscope Studio</div>
+            <a href="home.html" class="back-btn">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ROTOSCOPE</h1>
+            <p>Multimedia and Authoring</p>
+            <p>BSIT-S-2A-T</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Weeks</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">AE</span>
+                    <span class="stat-label">After Effects</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Featured Video -->
+        <section class="featured-section">
+            <h2 class="section-title">Charlie Puth - Cheating on you</h2>
+            <div class="featured-container">
+                <div class="video-section">
+                    <div class="main-video-container">
+                        <div class="video-placeholder" id="mainVideoPlaceholder">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <video id="mainVideo" controls>
+                            <source src="rotoscope/complete.mp4" type="video/mp4">
+                            <source src="rotoscope/complete.mp4" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <h3>Adobe After Effects</h3>
+                    <p>Adobe After Effects is a digital visual effects, motion graphics, and compositing software used for creating animations, video effects, and cinematic visual content.</p>
+
+                    <div class="credits">
+    <h4>Original Video</h4>
+    <a href="https://youtu.be/dRspCmtv2Ng?si=ikxMqcXyjZIoMVX7" class="youtube-link" target="_blank">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
+            <path d="M19.615 2.18s-.194-1.37-.79-1.97c-.754-.79-1.6-.794-1.99-.84C14.456 0 10.005 0 10.005 0S5.554 0 3.175.37c-.394.046-1.236.05-1.99.84-.596.6-.79 1.97-.79 1.97S.2 3.78.2 5.38v1.5c0 1.6.195 3.2.195 3.2s.194 1.37.79 1.97c.754.79 1.744.765 2.185.848C4.815 12.988 10 13 10 13s4.456-.012 6.835-.382c.394-.046 1.236-.05 1.99-.84.596-.6.79-1.97.79-1.97s.195-1.6.195-3.2v-1.5c0-1.6-.195-3.2-.195-3.2zM8 9.5V3.5l5.5 3L8 9.5z"/>
+        </svg>
+        Watch on YouTube
+    </a>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Progress -->
+        <section class="weeks-section">
+            <h2 class="section-title">Weekly Progress</h2>
+            <div class="weeks-grid">
+                <!-- Week 1 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 1</div>
+                        <div class="progress-indicator" style="--progress: 14.28">
+                            <span class="progress-text">14%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video1">
+                        <video>
+                            <source src="rotoscope/roto1.mp4" type="video/mp4">
+                            <source src="rotoscope/roto1.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Introduction to rotoscoping and After Effects interface. Setting up the project and importing source footage.</p>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 2</div>
+                        <div class="progress-indicator" style="--progress: 28.56">
+                            <span class="progress-text">29%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video2">
+                        <video>
+                            <source src="rotoscope/roto2.mp4" type="video/mp4">
+                            <source src="rotoscope/roto2.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Basic rotoscoping techniques. Creating compositions and understanding the timeline workflow.</p>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 3</div>
+                        <div class="progress-indicator" style="--progress: 42.84">
+                            <span class="progress-text">43%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video3">
+                        <video>
+                            <source src="rotoscope/roto3.mp4" type="video/mp4">
+                            <source src="rotoscope/roto3.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Advanced layer management. Using the Roto Brush tool for initial selections and masks.</p>
+                </div>
+
+                <!-- Week 4 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 4</div>
+                        <div class="progress-indicator" style="--progress: 57.12">
+                            <span class="progress-text">57%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video4">
+                        <video>
+                            <source src="rotoscope/roto4.mp4" type="video/mp4">
+                            <source src="rotoscope/roto4.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Refining selections with edge refinement tools. Working with mattes and alpha channels.</p>
+                </div>
+
+                <!-- Week 5 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 5</div>
+                        <div class="progress-indicator" style="--progress: 71.4">
+                            <span class="progress-text">71%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video5">
+                        <video>
+                            <source src="rotoscope/roto5.mp4" type="video/mp4">
+                            <source src="rotoscope/roto5.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Adding artistic effects to rotoscoped elements. Color correction and stylization techniques.</p>
+                </div>
+
+                <!-- Week 6 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 6</div>
+                        <div class="progress-indicator" style="--progress: 85.68">
+                            <span class="progress-text">86%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video6">
+                        <video>
+                            <source src="rotoscope/roto6.mp4" type="video/mp4">
+                            <source src="rotoscope/roto6.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Compositing rotoscoped elements with backgrounds. Creating seamless integrations.</p>
+                </div>
+
+                <!-- Week 7 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">Week 7</div>
+                        <div class="progress-indicator" style="--progress: 100">
+                            <span class="progress-text">100%</span>
+                        </div>
+                    </div>
+                    <div class="week-video" id="video7">
+                        <video>
+                            <source src="rotoscope/roto7.mp4" type="video/mp4">
+                            <source src="rotoscope/roto7.webm" type="video/webm">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <p class="week-description">Final rendering and output. Reviewing the complete rotoscoped animation and making final adjustments.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="backToTop">↑</button>
+
+    <script>
+        // Main video functionality
+        const mainVideoPlaceholder = document.getElementById('mainVideoPlaceholder');
+        const mainVideo = document.getElementById('mainVideo');
+
+        mainVideoPlaceholder.addEventListener('click', () => {
+            mainVideoPlaceholder.style.display = 'none';
+            mainVideo.style.display = 'block';
+            mainVideo.play();
+        });
+
+        // Week video functionality
+        document.querySelectorAll('.week-video').forEach(videoContainer => {
+            const video = videoContainer.querySelector('video');
+
+            videoContainer.addEventListener('click', () => {
+                if (videoContainer.classList.contains('playing')) {
+                    video.pause();
+                    videoContainer.classList.remove('playing');
+                } else {
+                    videoContainer.classList.add('playing');
+                    video.play();
+                }
+            });
+
+            video.addEventListener('ended', () => {
+                videoContainer.classList.remove('playing');
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.nav-bar');
+            if (navbar) {
+                if (window.pageYOffset > 50) {
+                    navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                } else {
+                    navbar.style.background = 'rgba(0, 0, 0, 0.7)';
+                }
+            }
+        });
+
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all week cards for animation
+        document.querySelectorAll('.week-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
