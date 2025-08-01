@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System </title>
+    <title>TOLIN | Solar System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
@@ -45,8 +45,8 @@
             top: 0;
             width: 100%;
             padding: 20px 50px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid rgba(156, 39, 176, 0.3);
         }
@@ -58,61 +58,151 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #e1bee7;
             text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
         }
 
-        .back-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
+        .nav-links a {
+            color: #d1c4e9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e1bee7;
+            text-shadow: 0 0 10px rgba(156, 39, 176, 0.8);
         }
 
         .hero-section {
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-            position: relative;
-            margin-top: 80px;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #9c27b0, #e1bee7, #6a1b9a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
-            animation: titleGlow 3s ease-in-out infinite alternate;
-            text-align: center;
-        }
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    position: relative;
+    margin-top: 80px;
+    transform: translateY(80px); /* This moves everything down by 80px */
+}
 
         @keyframes titleGlow {
             0% { text-shadow: 0 0 30px rgba(156, 39, 176, 0.8); }
             100% { text-shadow: 0 0 50px rgba(156, 39, 176, 1); }
         }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            color: #d1c4e9;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+        /* Solar System Animation */
+        .solar-system {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -120px auto 2rem auto; /* Negative top margin to pull it up */
+}
+
+        .sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ffa500 0%, #ff4500 50%, #8b0000 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffa500, 0 0 80px #ff4500;
+            animation: sunPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes sunGlow {
+            0% { box-shadow: 0 0 20px #ffeb3b, 0 0 40px #ff9800; }
+            100% { box-shadow: 0 0 30px #ffeb3b, 0 0 60px #ff9800; }
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Individual planet styles and orbits */
+        .mercury-orbit { width: 80px; height: 80px; animation: rotate 4s linear infinite; }
+        .mercury { width: 6px; height: 6px; background: #8c7853; }
+
+        .venus-orbit { width: 100px; height: 100px; animation: rotate 7s linear infinite; }
+        .venus { width: 8px; height: 8px; background: #ffc649; }
+
+        .earth-orbit { width: 120px; height: 120px; animation: rotate 10s linear infinite; }
+        .earth { width: 10px; height: 10px; background: #6b93d6; }
+
+        .mars-orbit { width: 140px; height: 140px; animation: rotate 15s linear infinite; }
+        .mars { width: 8px; height: 8px; background: #c1440e; }
+
+        .jupiter-orbit { width: 200px; height: 200px; animation: rotate 25s linear infinite; }
+        .jupiter { width: 20px; height: 20px; background: #d8ca9d; }
+
+        .saturn-orbit { width: 240px; height: 240px; animation: rotate 35s linear infinite; }
+        .saturn { 
+            width: 18px; 
+            height: 18px; 
+            background: #fab27b;
+            position: relative;
+        }
+
+        .saturn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(250, 178, 123, 0.6);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .saturn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+            border: 1px solid rgba(250, 178, 123, 0.4);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .uranus-orbit { width: 280px; height: 280px; animation: rotate 45s linear infinite; }
+        .uranus { width: 14px; height: 14px; background: #4fd0e7; }
+
+        .neptune-orbit { width: 320px; height: 320px; animation: rotate 60s linear infinite; }
+        .neptune { width: 14px; height: 14px; background: #4b70dd; }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .section-container {
@@ -375,6 +465,7 @@
             border-radius: 15px;
             padding: 1rem;
             text-align: center;
+            margin-bottom: 1rem;
         }
 
         .age-label {
@@ -389,6 +480,39 @@
             color: #e1bee7;
             text-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
         }
+
+        /* Blender Download Button */
+        .blender-download-btn {
+    background: linear-gradient(45deg, #ea7600, #ff8f00);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(234, 118, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.blender-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(234, 118, 0, 0.5);
+    background: linear-gradient(45deg, #ff8f00, #ffa726);
+}
+
+        .blender-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
 
         /* Summary Section */
         .summary-section {
@@ -460,44 +584,145 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
+        /* Floating Action Button - Fixed */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: scale(0.8);
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fab.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(156, 39, 176, 0.6);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(156, 39, 176, 0.3);
+        }
+
+        .footer p {
+            color: #b39ddb;
+            opacity: 0.8;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-bar { padding: 15px 20px; }
             .hero-content h1 { font-size: 2.5rem; }
+            .solar-system { width: 400px; height: 400px; }
             .section-title { font-size: 2rem; }
             .planet-grid { grid-template-columns: 1fr; }
             .complete-journey { padding: 2rem; }
             .age-calculator { padding: 2rem; }
         }
+
+        @media (max-width: 480px) {
+            .solar-system { width: 300px; height: 300px; }
+            .mercury-orbit { width: 60px; height: 60px; }
+            .venus-orbit { width: 75px; height: 75px; }
+            .earth-orbit { width: 90px; height: 90px; }
+            .mars-orbit { width: 105px; height: 105px; }
+            .jupiter-orbit { width: 150px; height: 150px; }
+            .saturn-orbit { width: 180px; height: 180px; }
+            .uranus-orbit { width: 210px; height: 210px; }
+            .neptune-orbit { width: 240px; height: 240px; }
+        }
+        
     </style>
 </head>
 <body class="text-white">
+    <!-- Starfield Background -->
+    <div class="starfield"></div>
+
+    
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-[#e1bee7] text-center mb-4" style="text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);">
-  Solar System 
-</h1>
-
-
-
-            <button class="bg-gradient-to-br from-purple-700 to-purple-900 text-white px-6 py-3 rounded-full font-semibold text-sm transition-all shadow-lg hover:-translate-y-1 hover:shadow-purple-700/60">
-                <a href="home.html" class="text-white">← Back to Home</a>
-            </button>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="logo">Multimedia & Authoring</div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="rotoscope.html">Rotoscope</a></li>
+                <li><a href="solarsystem.html">Solar System</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section flex items-center justify-center pt-20">
+    <!-- Hero Section with Solar System Animation -->
+    <section class="hero-section">
         <div class="text-center max-w-4xl mx-auto px-6">
-            <h1 class="text-6xl md:text-7xl font-bold mb-6">
-                <h1 class="text-6xl font-bold text-[#e1bee7] text-center mb-6" style="text-shadow: 0 0 15px rgba(156, 39, 176, 0.5);">
-  EXPLORE OUR UNIVERSE
-</h1>
-
-
-            </h1>
-        
+             <h1 class="text-6xl font-bold text-[#e1bee7] text-center mb-6" style="text-shadow: 0 0 15px rgba(156, 39, 176, 0.5);">
+            THE SOLAR SYSTEM
+        </h1>
+            
+            <!-- Solar System Animation -->
+            <div class="solar-system">
+                <!-- Sun -->
+                <div class="sun"></div>
+                
+                <!-- Mercury -->
+                <div class="orbit mercury-orbit">
+                    <div class="planet mercury"></div>
+                </div>
+                
+                <!-- Venus -->
+                <div class="orbit venus-orbit">
+                    <div class="planet venus"></div>
+                </div>
+                
+                <!-- Earth -->
+                <div class="orbit earth-orbit">
+                    <div class="planet earth"></div>
+                </div>
+                
+                <!-- Mars -->
+                <div class="orbit mars-orbit">
+                    <div class="planet mars"></div>
+                </div>
+                
+                <!-- Jupiter -->
+                <div class="orbit jupiter-orbit">
+                    <div class="planet jupiter"></div>
+                </div>
+                
+                <!-- Saturn with rings -->
+                <div class="orbit saturn-orbit">
+                    <div class="planet saturn"></div>
+                </div>
+                
+                <!-- Uranus -->
+                <div class="orbit uranus-orbit">
+                    <div class="planet uranus"></div>
+                </div>
+                
+                <!-- Neptune -->
+                <div class="orbit neptune-orbit">
+                    <div class="planet neptune"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -536,6 +761,18 @@
                             <div class="stat-number text-lg">200+</div>
                             <div class="text-gray-400 text-sm">Moons</div>
                         </div>
+
+                        <div class="mt-6">
+    <button class="blender-download-btn" onclick="downloadBlenderFile('tolin_solarsystem')">
+        <svg class="blender-logo" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="11" fill="#265787"/>
+            <circle cx="12" cy="12" r="9" fill="#ea7600"/>
+            <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z" fill="#265787"/>
+            <circle cx="12" cy="12" r="2" fill="white"/>
+        </svg>
+        Download Blender File
+    </button>
+</div>
                     </div>
                 </div>
             </div>
@@ -594,6 +831,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Mercury:</div>
                             <div class="age-number" id="mercury-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('mercury')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="mercuryError" class="video-error">Video failed to load.</div>
                 </div>
@@ -621,6 +864,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Venus:</div>
                             <div class="age-number" id="venus-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('venus')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="venusError" class="video-error">Video failed to load.</div>
                 </div>
@@ -648,6 +897,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Earth:</div>
                             <div class="age-number" id="earth-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('earth')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="earthError" class="video-error">Video failed to load.</div>
                 </div>
@@ -675,6 +930,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Mars:</div>
                             <div class="age-number" id="mars-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('mars')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="marsError" class="video-error">Video failed to load.</div>
                 </div>
@@ -702,6 +963,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Jupiter:</div>
                             <div class="age-number" id="jupiter-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('jupiter')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="jupiterError" class="video-error">Video failed to load.</div>
                 </div>
@@ -729,6 +996,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Saturn:</div>
                             <div class="age-number" id="saturn-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('saturn')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="saturnError" class="video-error">Video failed to load.</div>
                 </div>
@@ -756,6 +1029,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Uranus:</div>
                             <div class="age-number" id="uranus-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('uranus')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="uranusError" class="video-error">Video failed to load.</div>
                 </div>
@@ -783,6 +1062,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Neptune:</div>
                             <div class="age-number" id="neptune-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('neptune')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="neptuneError" class="video-error">Video failed to load.</div>
                 </div>
@@ -810,6 +1095,12 @@
                             <div class="text-gray-300 text-sm mb-1">Your age on Pluto:</div>
                             <div class="age-number" id="pluto-age-display">Enter your age above</div>
                         </div>
+                        <button class="blender-download-btn" onclick="downloadBlenderFile('pluto')">
+                            <svg class="blender-logo" viewBox="0 0 24 24">
+                                <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                            </svg>
+                            Download Blender File
+                        </button>
                     </div>
                     <div id="plutoError" class="video-error">Video failed to load.</div>
                 </div>
@@ -860,8 +1151,15 @@
                 </div>
             </div>
         </section>
-
     </div>
+
+    <!-- Footer -->
+     <footer class="footer">
+        <p>&copy; 2025 Multimedia & Authoring. Ernesto M. Tolin III. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="backToTop">↑</button>
 
     <script>
         // Video play functionality with error handling
@@ -872,14 +1170,18 @@
             
             // Hide the placeholder and error message
             placeholderElement.style.display = 'none';
-            errorElement.style.display = 'none';
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
             
             // Show the video and close button
             videoElement.style.display = 'block';
             
             // Show the close button
             const closeButton = videoElement.nextElementSibling;
-            closeButton.style.display = 'block';
+            if (closeButton && closeButton.classList.contains('close-video')) {
+                closeButton.style.display = 'block';
+            }
             
             // Attempt to play the video
             const playPromise = videoElement.play();
@@ -887,10 +1189,14 @@
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
                     console.error('Video play failed:', error);
-                    errorElement.style.display = 'block';
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                    }
                     videoElement.style.display = 'none';
                     placeholderElement.style.display = 'block';
-                    closeButton.style.display = 'none';
+                    if (closeButton) {
+                        closeButton.style.display = 'none';
+                    }
                 });
             }
         }
@@ -904,7 +1210,9 @@
             videoElement.currentTime = 0;
             videoElement.style.display = 'none';
             placeholderElement.style.display = 'block';
-            closeButton.style.display = 'none';
+            if (closeButton) {
+                closeButton.style.display = 'none';
+            }
         }
 
         // Setup video error handlers
@@ -917,7 +1225,9 @@
                     const errorElement = document.getElementById(planetName + 'Error');
                     
                     console.error('Video load error:', video.error);
-                    errorElement.style.display = 'block';
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                    }
                     video.style.display = 'none';
                     
                     // Show placeholder again if video fails
@@ -966,6 +1276,60 @@
                 }
             }
         }
+
+        // Blender file download functionality
+        function downloadBlenderFile(planetName) {
+            // Create a temporary link element for download
+            const link = document.createElement('a');
+            link.href = `blender/${planetName}.blend`;
+            link.download = `${planetName}_planet.blend`;
+            link.style.display = 'none';
+            
+            // Add to DOM, click, then remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show feedback to user
+            console.log(`Downloading ${planetName} Blender file...`);
+            
+            // Optional: Show a visual feedback to the user
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = `
+                <svg class="blender-logo animate-spin" viewBox="0 0 24 24">
+                    <path d="M12.51 1.17L8.35 2.85 12.51 22.83 16.67 21.15 12.51 1.17M8.35 2.85C5.26 4.06 2.17 7.84 2.17 12S5.26 19.94 8.35 21.15L12.51 1.17 8.35 2.85M15.49 22.83L19.65 21.15C22.74 19.94 25.83 16.16 25.83 12S22.74 4.06 19.65 2.85L15.49 22.83Z"/>
+                </svg>
+                Downloading...
+            `;
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                button.innerHTML = originalText;
+            }, 2000);
+        }
+
+        // Floating Action Button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fab = document.getElementById('backToTop');
+            
+            // Show/hide FAB based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    fab.classList.add('visible');
+                } else {
+                    fab.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to top when clicked
+            fab.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>

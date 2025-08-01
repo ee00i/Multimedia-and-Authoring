@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotoscope Multimedia & Authoring</title>
+    <title>TOLIN | Rotoscope</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +27,7 @@
             padding: 20px 50px;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 100;
             border-bottom: 1px solid rgba(156, 39, 176, 0.3);
         }
 
@@ -44,22 +44,21 @@
             text-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
         }
 
-        .back-btn {
-            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6);
+        .nav-links a {
+            color: #d1c4e9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e1bee7;
+            text-shadow: 0 0 10px rgba(156, 39, 176, 0.8);
         }
 
         /* Starfield Background */
@@ -478,6 +477,18 @@
             box-shadow: 0 8px 30px rgba(156, 39, 176, 0.6);
         }
 
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(156, 39, 176, 0.3);
+        }
+
+        .footer p {
+            color: #b39ddb;
+            opacity: 0.8;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-bar { 
@@ -537,8 +548,12 @@
     <!-- Navigation -->
     <nav class="nav-bar">
         <div class="nav-container">
-            <div class="logo">Rotoscope Studio</div>
-            <a href="home.html" class="back-btn">← Back to Home</a>
+            <div class="logo">Multimedia & Authoring</div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="rotoscope.html">Rotoscope</a></li>
+                <li><a href="solarsystem.html">Solar System</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -546,8 +561,6 @@
     <section class="hero">
         <div class="hero-content">
             <h1>ROTOSCOPE</h1>
-            <p>Multimedia and Authoring</p>
-            <p>BSIT-S-2A-T</p>
             <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-number">7</span>
@@ -617,7 +630,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Introduction to rotoscoping and After Effects interface. Setting up the project and importing source footage.</p>
+                        <p class="week-description">I was introduced to rotoscoping and the After Effects interface. I also set up the project and imported the source footage.</p>
                 </div>
 
                 <!-- Week 2 -->
@@ -636,7 +649,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Basic rotoscoping techniques. Creating compositions and understanding the timeline workflow.</p>
+                    <p class="week-description">I learned basic rotoscoping techniques, created compositions, and explored how the timeline workflow functions.</p>
                 </div>
 
                 <!-- Week 3 -->
@@ -655,7 +668,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Advanced layer management. Using the Roto Brush tool for initial selections and masks.</p>
+                    <p class="week-description">I practiced advanced layer management and used the Roto Brush tool to make initial selections and create masks.</p>
                 </div>
 
                 <!-- Week 4 -->
@@ -674,7 +687,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Refining selections with edge refinement tools. Working with mattes and alpha channels.</p>
+                    <p class="week-description">I refined my selections using edge refinement tools and worked with mattes and alpha channels.</p>
                 </div>
 
                 <!-- Week 5 -->
@@ -693,7 +706,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Adding artistic effects to rotoscoped elements. Color correction and stylization techniques.</p>
+                    <p class="week-description">I added artistic effects to the rotoscoped elements and applied color correction and stylization techniques.</p>
                 </div>
 
                 <!-- Week 6 -->
@@ -712,7 +725,7 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Compositing rotoscoped elements with backgrounds. Creating seamless integrations.</p>
+                    <p class="week-description">I composited rotoscoped elements with different backgrounds and worked on creating seamless integrations.</p>
                 </div>
 
                 <!-- Week 7 -->
@@ -731,11 +744,17 @@
                         </video>
                         <div class="play-icon">▶</div>
                     </div>
-                    <p class="week-description">Final rendering and output. Reviewing the complete rotoscoped animation and making final adjustments.</p>
+                    <p class="week-description">I finished early, completed the final rendering and output, then reviewed the entire rotoscoped animation and made final adjustments.</p>
                 </div>
             </div>
         </section>
     </main>
+
+
+    <!-- Footer -->
+     <footer class="footer">
+        <p>&copy; 2025 Multimedia & Authoring. Ernesto M. Tolin III. All rights reserved.</p>
+    </footer>
 
     <!-- Floating Action Button -->
     <button class="fab" id="backToTop">↑</button>
