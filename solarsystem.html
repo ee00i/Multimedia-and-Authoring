@@ -81,33 +81,42 @@
             text-shadow: 0 0 10px rgba(156, 39, 176, 0.8);
         }
 
+        /* Fixed Hero Section */
         .hero-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5%;
-    position: relative;
-    margin-top: 80px;
-    transform: translateY(80px); /* This moves everything down by 80px */
-}
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 5% 40px 5%;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #e1bee7;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.5);
+            text-align: center;
+            margin-bottom: 2rem;
+            z-index: 10;
+        }
 
         @keyframes titleGlow {
             0% { text-shadow: 0 0 30px rgba(156, 39, 176, 0.8); }
             100% { text-shadow: 0 0 50px rgba(156, 39, 176, 1); }
         }
 
-        /* Solar System Animation */
+        /* Responsive Solar System Animation */
         .solar-system {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: -120px auto 2rem auto; /* Negative top margin to pull it up */
-}
+            position: relative;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
 
         .sun {
             position: absolute;
@@ -122,7 +131,7 @@
             animation: sunPulse 3s ease-in-out infinite alternate;
         }
 
-        @keyframes sunGlow {
+        @keyframes sunPulse {
             0% { box-shadow: 0 0 20px #ffeb3b, 0 0 40px #ff9800; }
             100% { box-shadow: 0 0 30px #ffeb3b, 0 0 60px #ff9800; }
         }
@@ -483,35 +492,35 @@
 
         /* Blender Download Button */
         .blender-download-btn {
-    background: linear-gradient(45deg, #ea7600, #ff8f00);
-    border: none;
-    border-radius: 15px;
-    padding: 12px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #ea7600, #f58500);
     color: white;
-    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(234, 118, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    text-decoration: none;
+    white-space: nowrap;
+    min-width: fit-content;
+    margin-top: 15px;
 }
 
 .blender-download-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 25px rgba(234, 118, 0, 0.5);
-    background: linear-gradient(45deg, #ff8f00, #ffa726);
+    background: linear-gradient(45deg, #f58500, #ea7600);
 }
 
-        .blender-logo {
+.blender-logo {
     width: 20px;
     height: 20px;
-    margin-right: 8px;
+    flex-shrink: 0;
 }
 
         /* Summary Section */
@@ -629,27 +638,162 @@
             opacity: 0.8;
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
-            .nav-bar { padding: 15px 20px; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .solar-system { width: 400px; height: 400px; }
-            .section-title { font-size: 2rem; }
-            .planet-grid { grid-template-columns: 1fr; }
-            .complete-journey { padding: 2rem; }
-            .age-calculator { padding: 2rem; }
+            .nav-bar { 
+                padding: 15px 20px; 
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .hero-section {
+                min-height: 100vh;
+                padding: 120px 5% 60px 5%;
+            }
+            
+            .hero-title { 
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .solar-system { 
+                width: 400px; 
+                height: 400px; 
+            }
+            
+            .section-title { 
+                font-size: 2rem; 
+            }
+            
+            .planet-grid { 
+                grid-template-columns: 1fr; 
+                gap: 1.5rem;
+            }
+            
+            .complete-journey { 
+                padding: 2rem; 
+                margin: 2rem 0;
+            }
+            
+            .age-calculator { 
+                padding: 2rem; 
+                margin: 2rem 0;
+            }
+            
+            .summary-section {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .solar-system { width: 300px; height: 300px; }
-            .mercury-orbit { width: 60px; height: 60px; }
-            .venus-orbit { width: 75px; height: 75px; }
-            .earth-orbit { width: 90px; height: 90px; }
-            .mars-orbit { width: 105px; height: 105px; }
-            .jupiter-orbit { width: 150px; height: 150px; }
-            .saturn-orbit { width: 180px; height: 180px; }
-            .uranus-orbit { width: 210px; height: 210px; }
-            .neptune-orbit { width: 240px; height: 240px; }
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .hero-section {
+                padding: 100px 3% 40px 3%;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .solar-system { 
+                width: 280px; 
+                height: 280px; 
+            }
+            
+            /* Smaller orbits for mobile */
+            .mercury-orbit { width: 50px; height: 50px; }
+            .venus-orbit { width: 65px; height: 65px; }
+            .earth-orbit { width: 80px; height: 80px; }
+            .mars-orbit { width: 95px; height: 95px; }
+            .jupiter-orbit { width: 130px; height: 130px; }
+            .saturn-orbit { width: 155px; height: 155px; }
+            .uranus-orbit { width: 180px; height: 180px; }
+            .neptune-orbit { width: 205px; height: 205px; }
+            
+            /* Smaller planets for mobile */
+            .mercury { width: 4px; height: 4px; }
+            .venus { width: 5px; height: 5px; }
+            .earth { width: 6px; height: 6px; }
+            .mars { width: 5px; height: 5px; }
+            .jupiter { width: 12px; height: 12px; }
+            .saturn { width: 10px; height: 10px; }
+            .uranus { width: 8px; height: 8px; }
+            .neptune { width: 8px; height: 8px; }
+            
+            .sun {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .planet-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .complete-journey, .age-calculator, .summary-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .play-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .play-icon {
+                border-left: 15px solid #9c27b0;
+                border-top: 9px solid transparent;
+                border-bottom: 9px solid transparent;
+            }
+        }
+        
+        /* Extra small screens */
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .solar-system {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .mercury-orbit { width: 40px; height: 40px; }
+            .venus-orbit { width: 50px; height: 50px; }
+            .earth-orbit { width: 60px; height: 60px; }
+            .mars-orbit { width: 70px; height: 70px; }
+            .jupiter-orbit { width: 100px; height: 100px; }
+            .saturn-orbit { width: 120px; height: 120px; }
+            .uranus-orbit { width: 140px; height: 140px; }
+            .neptune-orbit { width: 160px; height: 160px; }
         }
         
     </style>
@@ -1024,7 +1168,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3 text-white"> Uranus</h3>
-                        <p class="text-gray-300 mb-4">The tilted ice giant that rolls on its side, with a unique magnetic field and faint ring system.</p>
+                        <p class="text-gray-300 mb-4">The tilted ice giant that rolls on its side through space, featuring a completely unique magnetic field and beautiful faint ring system.</p>
                         <div class="age-display">
                             <div class="text-gray-300 text-sm mb-1">Your age on Uranus:</div>
                             <div class="age-number" id="uranus-age-display">Enter your age above</div>

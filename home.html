@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOLIN | Multimedia & Authoring</title>
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -60,13 +60,12 @@
         }
 
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 5%;
+            padding: 100px 5% 40px 5%;
             position: relative;
-            margin-top: 80px; /* Added to account for fixed navbar */
         }
 
         .starfield {
@@ -328,13 +327,67 @@
             opacity: 1;
         }
 
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
-            .nav-bar { padding: 15px 20px; }
-            .hero { flex-direction: column; text-align: center; padding: 20px; }
-            .content { margin-bottom: 30px; }
-            .content h1 { font-size: 2.5rem; }
-            .solar-system { width: 400px; height: 400px; }
-            .services { padding: 50px 20px; }
+            .nav-bar { 
+                padding: 15px 20px; 
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 120px 20px 60px 20px;
+                min-height: 100vh;
+            }
+            
+            .content { 
+                margin-bottom: 40px; 
+                max-width: 100%;
+            }
+            
+            .content h1 { 
+                font-size: 2.5rem; 
+                margin-bottom: 1.5rem;
+            }
+            
+            .content p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .solar-system { 
+                width: 350px; 
+                height: 350px; 
+            }
+            
+            .sun {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .services { 
+                padding: 50px 20px; 
+            }
+            
+            .services h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Smaller orbits for mobile */
             .orbit-1 { width: 80px; height: 80px; }
             .orbit-2 { width: 95px; height: 95px; }
             .orbit-3 { width: 110px; height: 110px; }
@@ -343,6 +396,132 @@
             .orbit-6 { width: 175px; height: 175px; }
             .orbit-7 { width: 200px; height: 200px; }
             .orbit-8 { width: 225px; height: 225px; }
+            
+            /* Smaller planets for mobile */
+            .mercury { width: 6px; height: 6px; }
+            .venus { width: 8px; height: 8px; }
+            .earth { width: 8px; height: 8px; }
+            .mars { width: 7px; height: 7px; }
+            .jupiter { width: 16px; height: 16px; }
+            .saturn { width: 14px; height: 14px; }
+            .uranus { width: 12px; height: 12px; }
+            .neptune { width: 12px; height: 12px; }
+            
+            .saturn::before {
+                width: 25px;
+                height: 3px;
+            }
+            
+            .saturn::after {
+                width: 20px;
+                height: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .hero {
+                padding: 100px 15px 40px 15px;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .content p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .solar-system {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .sun {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .services {
+                padding: 40px 15px;
+            }
+            
+            .services h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            /* Even smaller orbits for small mobile */
+            .orbit-1 { width: 60px; height: 60px; }
+            .orbit-2 { width: 70px; height: 70px; }
+            .orbit-3 { width: 80px; height: 80px; }
+            .orbit-4 { width: 90px; height: 90px; }
+            .orbit-5 { width: 110px; height: 110px; }
+            .orbit-6 { width: 130px; height: 130px; }
+            .orbit-7 { width: 150px; height: 150px; }
+            .orbit-8 { width: 170px; height: 170px; }
+            
+            /* Tiny planets for small mobile */
+            .mercury { width: 4px; height: 4px; }
+            .venus { width: 6px; height: 6px; }
+            .earth { width: 6px; height: 6px; }
+            .mars { width: 5px; height: 5px; }
+            .jupiter { width: 12px; height: 12px; }
+            .saturn { width: 10px; height: 10px; }
+            .uranus { width: 8px; height: 8px; }
+            .neptune { width: 8px; height: 8px; }
+            
+            .saturn::before {
+                width: 18px;
+                height: 2px;
+            }
+            
+            .saturn::after {
+                width: 15px;
+                height: 1px;
+            }
+        }
+        
+        /* Extra small screens */
+        @media (max-width: 320px) {
+            .content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .solar-system {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .sun {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .orbit-1 { width: 50px; height: 50px; }
+            .orbit-2 { width: 60px; height: 60px; }
+            .orbit-3 { width: 70px; height: 70px; }
+            .orbit-4 { width: 80px; height: 80px; }
+            .orbit-5 { width: 95px; height: 95px; }
+            .orbit-6 { width: 110px; height: 110px; }
+            .orbit-7 { width: 125px; height: 125px; }
+            .orbit-8 { width: 140px; height: 140px; }
         }
     </style>
 </head>
